@@ -1,7 +1,7 @@
 {
   "name": "portfolio-site",
   "version": "1.0.0",
-  "homepage": "https://nileshmukherji.github.io/portfolio_site",
+  "homepage": "https://nilesh-mukherji.github.io/portfolio_site",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
