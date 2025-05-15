@@ -93,6 +93,12 @@ const TerminalHome = () => {
   const typingAudio = useRef<HTMLAudioElement | null>(null);
   const phaseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+  const skipToPhase10 = () => {
+    setSkipIntro(true);
+    setPhase(10);
+    setLines(OUTPUT_LINES);
+  };
+
   // Handle URL parameter for skipping intro
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -185,6 +191,14 @@ const TerminalHome = () => {
 
   return (
     <div className="bg-black text-green-400 font-mono min-h-screen flex flex-col items-center justify-center p-8">
+      {!skipIntro && phase < 10 && (
+        <button
+          onClick={skipToPhase10}
+          className="fixed bottom-4 center px-4 py-2 border border-green-400 text-green-400 text-sm rounded bg-transparent opacity-50 hover:opacity-100 hover:bg-green-400 hover:text-black transition-opacity transition-colors duration-300 z-50"
+        >
+          Skip Animation
+        </button>
+      )}
       {skipIntro ? (
         resuming ? (
           <div className="text-green-400 text-2xl font-mono">
@@ -196,7 +210,7 @@ const TerminalHome = () => {
             <p className="text-green-400 text-2xl text-center">&gt; Quant | AI | Markets</p>
             <p className="text-white text-2xl text-left w-full mt-10 mb-2">&gt; cat about.md</p>
             <div className="whitespace-pre-line text-green-400 flex flex-col md:flex-row gap-6 w-full">
-              <img src="/ascii-portrait.png" alt="ASCII Portrait" className="max-w-xs h-auto object-contain" />
+              <img src="./ascii-portrait.png" alt="ASCII Portrait" className="max-w-xs h-auto object-contain" />
               <div className="space-y-4">{OUTPUT_LINES.map((line, idx) => <div key={idx}>{line}</div>)}</div>
             </div>
             <p className="text-white text-2xl text-left w-full mt-10 mb-2">&gt; ls projects</p>
@@ -239,7 +253,7 @@ const TerminalHome = () => {
               {phase >= 3 && <div className="text-2xl text-white text-left w-full mt-10 mb-2">&gt; cat about.md</div>}
               {phase >= 4 && (
                 <div className="whitespace-pre-line text-green-400 flex flex-col md:flex-row gap-6 w-full">
-                  <img src="/ascii-portrait.png" alt="ASCII Portrait" className="max-w-xs h-auto object-contain" />
+                  <img src="./ascii-portrait.png" alt="ASCII Portrait" className="max-w-xs h-auto object-contain" />
                   <div className="space-y-4">
                     {lines.map((line, idx) => <div key={idx}>{line}</div>)}
                     {currentLine && <div>{currentLine}</div>}
