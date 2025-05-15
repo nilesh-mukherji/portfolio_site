@@ -4,6 +4,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { projects } from '../data/projects';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -29,10 +31,16 @@ const ProjectDetail: React.FC = () => {
           ))}
         </div>
       )}
-
-      <ReactMarkdown className="prose prose-invert max-w-none">
-        {project.content}
-      </ReactMarkdown>
+      
+      <div className="prose prose-invert max-w-none">
+        <ReactMarkdown
+          skipHtml={false}
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeRaw]}
+        >
+          {project.content.trim()}
+        </ReactMarkdown>
+      </div>
 
       <div className="mt-8 space-x-4">
         {project.github && (
