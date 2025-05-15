@@ -205,7 +205,7 @@ const TerminalHome = () => {
             </div>
             <div className="mt-2 flex justify-center">
               <a
-                href="/projects"
+                href="/#/projects"
                 className="px-6 py-3 border border-green-400 text-green-400 rounded hover:bg-green-400 hover:text-black transition-colors duration-300"
               >
                 &gt; View All Projects
@@ -254,7 +254,7 @@ const TerminalHome = () => {
                   </div>
                   <div className="mt-2 flex justify-center">
                     <a
-                      href="/projects"
+                      href="/#/projects"
                       className="px-6 py-3 border border-green-400 text-green-400 rounded hover:bg-green-400 hover:text-black transition-colors duration-300"
                     >
                       View All Projects
