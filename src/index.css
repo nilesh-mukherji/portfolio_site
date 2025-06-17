@@ -23,6 +23,7 @@ html, body {
   margin: 0;
   overscroll-behavior-y: contain; /* Prevent overscroll glow effect on vertical scrolling */
   overscroll-behavior-x: none;   /* Prevent horizontal overscroll */
+  color: #00ff00; /* Green text */
 }
 
 body {
@@ -30,4 +31,41 @@ body {
   min-height: 100vh;  /* Ensure the body covers the full viewport height */
   display: flex;
   flex-direction: column;
+}
+
+/* Light mode styles */
+@media (prefers-color-scheme: light) {
+  html, body {
+    background-color: white;
+    color: black; /* Black text for green elements */
+  }
+
+  .text-green-400 {
+    color: black; /* Change light green text to black */
+  }
+
+  .text-green-300 {
+    color: #3399ff; /* Change lighter green text to a lighter blue */
+  }
+
+  .text-white {
+    color: #00008b; /* Change white text to dark blue */
+  }
+
+  .border-green-400 {
+    border-color: black; /* Change green borders to black */
+  }
+
+  .bg-black {
+    background-color: white; /* Change black backgrounds to white */
+  }
+
+  .hover\:bg-green-400:hover {
+    background-color: lightblue !important; /* Change hover green to light blue */
+    color: black; /* Keep hover text white */
+  }
+
+  .bg-green-700 {
+    background-color: lightblue; /* Change skill box highlight to blue */
+  }
 }

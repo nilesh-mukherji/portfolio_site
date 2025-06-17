@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { projects } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
 import { Link } from 'react-router-dom';
 
 const ProjectsPage: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // Simulate loading for 1 second
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="bg-black text-green-400 min-h-screen flex items-center justify-center font-mono">
+        <p className="text-2xl">&gt; compiling project list... <span className="animate-pulse">|</span></p>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-black text-green-400 min-h-screen p-8 font-mono">
       <h1 className="text-3xl text-green-300 mb-6">&gt; All Projects</h1>

@@ -1,6 +1,6 @@
 // src/pages/ProjectDetail.tsx
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { projects } from '../data/projects';
 import ReactMarkdown from 'react-markdown';
@@ -9,7 +9,22 @@ import rehypeRaw from 'rehype-raw';
 
 const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // Simulate loading for 1 second
+    return () => clearTimeout(timer);
+  }, []);
+
   const project = projects.find((p) => p.slug === slug);
+
+  if (loading) {
+    return (
+      <div className="bg-black text-green-400 min-h-screen flex items-center justify-center font-mono">
+        <p className="text-2xl">&gt; establishing connection... <span className="animate-pulse">|</span></p>
+      </div>
+    );
+  }
 
   if (!project) {
     return (
