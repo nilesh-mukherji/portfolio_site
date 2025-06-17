@@ -186,8 +186,24 @@ const TerminalHome = () => {
     </div>
   );
 
+  // Skip animation button function
+  const skipToPhase10 = () => {
+    setSkipIntro(true);
+    setPhase(10);
+    setLines(OUTPUT_LINES);
+  };
+
   return (
     <div className="bg-black text-green-400 font-mono min-h-screen flex flex-col items-center justify-center p-8">
+      {/* Skip Animation Button */}
+      {!skipIntro && phase < 10 && (
+        <button
+          onClick={skipToPhase10}
+          className="fixed bottom-4 right-4 px-4 py-2 border border-green-400 text-green-400 text-sm rounded bg-transparent opacity-50 hover:opacity-100 hover:bg-green-400 hover:text-black transition-opacity transition-colors duration-300 z-50"
+        >
+          Skip Animation
+        </button>
+      )}
       {skipIntro ? (
         resuming ? (
           <div className="text-green-400 text-2xl font-mono">
